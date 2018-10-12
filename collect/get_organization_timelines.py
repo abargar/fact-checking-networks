@@ -2,13 +2,10 @@ import tweepy
 import json
 import os
 
-API_KEY = "wKRUBKs2u5fZjgrtBMBkwbC17"
-API_SECRET_KEY = "aXYv16rBJEdhsrxikZtVBkmuSd0XYnL9487oOCYihyZklpdhHY"
-TOKEN = "910692288183111680-JY95Kf6d1lEoPKO5Q1QV6uoxLIVT3VD"
-TOKEN_SECRET = "U80ebhsII3aEHDYcvE8TTqOcX8nLoLcWKJ1yDj45X0V8X"
+KEYS = dict(line.strip().split('=') for line in open('../twitter_keys.txt'))
 
-auth = tweepy.OAuthHandler(API_KEY, API_SECRET_KEY)
-auth.set_access_token(TOKEN, TOKEN_SECRET)
+auth = tweepy.OAuthHandler(KEYS['API_KEY'], KEYS['API_SECRET_KEY'])
+auth.set_access_token(KEYS['TOKEN'], KEYS['TOKEN_SECRET'])
 api = tweepy.API(auth, wait_on_rate_limit=True)
 
 TWEET_LIMIT = 1000
